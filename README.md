@@ -4,7 +4,13 @@ L'idée est de mettre en commun l'algorithme Skelnet proposé par [G. Devineau, 
 Dans ce repository, vous trouverez l'approche complete de Guillaume qui est forkée et une implémentation triviale d'auto-encodeur en Keras (sans aucune optimisation quelconque)
 Je vous recommande, de travailler en Keras (le code de Guillaume étant disponible en Keras et en Pytorch), mais si Pytorch vous convient et que vous souhaitez faire le TP en Pytorch, aucun soucis.
 
-Dans un premier temps je vous conseille de vous familiariser avec le concept d'auto-encodeur avec [une vidéo explicative](https://www.youtube.com/watch?v=g-KVHf0A2kI). Le principe dans notre cas est d'apprendre à reconstruire une action grâce à un auto-encodeur et récupérer la projection de chacune des actions dans l'espace réduit (ou espace latent ou bottleneck) puis d'appliquer Skelnet sur les données d'entrées transformées avec la partie encodeur.
+Dans un premier temps je vous conseille de vous familiariser avec le concept d'auto-encodeur avec [une vidéo explicative](https://www.youtube.com/watch?v=g-KVHf0A2kI). 
+Dans un second temps je vous conseille de vous intéresser à l'algorithme Skelnet présenté par Guillaume et al donc l'explication se trouve en dessous et le papier peut se trouver soit en demandant à Fabien soit sur internet.
+
+Le principe dans notre cas est d'apprendre à reconstruire une action grâce à un auto-encodeur et récupérer la projection de chacune des actions dans l'espace réduit (ou espace latent ou bottleneck) puis d'appliquer Skelnet sur les données d'entrées transformées avec la partie encodeur.
+
+Dans un certain sens, on espère avec l'autoencodeur capturer une certaine sémantique dans le jeu de données qui augmentera la capacité de classification de Skelnet
+
 
 ## Problèmes possibles
 

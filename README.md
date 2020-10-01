@@ -9,7 +9,7 @@ Dans un premier temps je vous conseille de vous familiariser avec le concept d'a
 ## Problèmes possibles
 
 Vous allez surement rencontrer quelques problèmes et en une semaine, certains peuvent être des points bloquants:
-* Les données: De mémoire il faut faire une demande pour récupérer les données, le code de Guillaume n'est en réalité pas directement applicable, il faudra certainement regarder le format de son entrée vis-à-vis de ce que je vous donne comme données
+* Les données: De mémoire il faut faire une demande pour récupérer les données, le code de Guillaume n'est en réalité pas directement applicable, il faudra certainement regarder le format de son entrée vis-à-vis de ce que je vous donne comme données ([disponibles sur mon drive]( https://drive.google.com/drive/folders/18tsv-Aje8jUNLzLB4ZufjOtGEzpeI-jl?usp=sharing)
 * La capacité de calcul: Travaillez sur Collab si vous n'avez pas de GPU
 
 ## Pipeline

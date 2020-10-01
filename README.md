@@ -1,3 +1,35 @@
+# TP Mines 2020:
+L'idée est de mettre en commun l'algorithme Skelnet proposé par [G. Devineau, F. Moutarde, W. Xi and J. Yang](https://ieeexplore.ieee.org/document/8373818) et la partie encodeur d'un autoencodeur pour voir si l'application de Skelnet sur une représentation plus réduite et porteuse d'information permet d'améliorer les résultats de skelnet pour shrec 14 et 28 classes.
+
+Dans ce repository, vous trouverez l'approche complete de Guillaume qui est forkée et une implémentation triviale d'auto-encodeur en Keras (sans aucune optimisation quelconque)
+Je vous recommande, de travailler en Keras (le code de Guillaume étant disponible en Keras et en Pytorch), mais si Pytorch vous convient et que vous souhaitez faire le TP en Pytorch, aucun soucis.
+
+Dans un premier temps je vous conseille de vous familiariser avec le concept d'auto-encodeur avec [une vidéo explicative](https://www.youtube.com/watch?v=g-KVHf0A2kI). Le principe dans notre cas est d'apprendre à reconstruire une action grâce à un auto-encodeur et récupérer la projection de chacune des actions dans l'espace réduit (ou espace latent ou bottleneck) puis d'appliquer Skelnet sur les données d'entrées transformées avec la partie encodeur.
+
+## Problèmes possibles
+
+Vous allez surement rencontrer quelques problèmes et en une semaine, certains peuvent être des points bloquants:
+* Les données: De mémoire il faut faire une demande pour récupérer les données, le code de Guillaume n'est en réalité pas directement applicable, il faudra certainement regarder le format de son entrée vis-à-vis de ce que je vous donne comme données
+* La capacité de calcul: Travaillez sur Collab si vous n'avez pas de GPU
+
+## Pipeline 1
+Dans un premier temps, il vous faudra:
+
+1. Entrainer un auto-encodeur pour la reconstruction d'action sur SHREC 14 et 28 (code avec un MLP trivial sans aucune optimisation donnée)
+2. Extraire la représentation des actions dans l'espace latent pour: l'ensemble de train et l'ensemble de test (code avec un MLP trivial sans aucune optimisation donnée)
+3. Entrainer Skelnet sur les données extraites en 2 et évaluer les résultats.
+
+## Idées à creuser
+Il y'a plein d'idées à creuser vis-à-vis de l'approche:
+* Dans un premier temps vous pouvez, au lieu de traiter le problème comme un problème à deux étapes, concatener le réseaux Skelnet à la partie encodeur de l'AE et finetuner l'approche, ce qui donnera une architecture optimisée de bout en bout.
+* Optimiser l'architecture de l'auto-encodeur (gridsearch + au lieu de faire un MLP, faire du CNN, du LSTM ou de l'attention), optimiser les hyperparamètres(dropout, batch, learning rate, fonctions d'activations, early_stopping, ReduceLronPlateau) et réaliser une première évaluation. 
+* Jouer sur la taille de l'espace latent (itd=13) dans le code, et faire des visualisations via T-Sne dans le code puis faire une étude de l'importance de la taille de l'espace latent dans: la reconstruction de l'AE et la qualité de classification de l'approche complète.
+
+## Ce que l'on souhaiterait
+
+
+
+
 # Deep Learning for Hand Gesture Recognition
 
 This repository holds a ```pytorch``` implementation of the deep learning model for hand gesture recognition introduced in the article [Deep Learning for Hand Gesture Recognition on Skeletal Data](https://ieeexplore.ieee.org/document/8373818) from G. Devineau, F. Moutarde, W. Xi and J. Yang.

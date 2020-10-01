@@ -12,7 +12,7 @@ Vous allez surement rencontrer quelques problèmes et en une semaine, certains p
 * Les données: De mémoire il faut faire une demande pour récupérer les données, le code de Guillaume n'est en réalité pas directement applicable, il faudra certainement regarder le format de son entrée vis-à-vis de ce que je vous donne comme données
 * La capacité de calcul: Travaillez sur Collab si vous n'avez pas de GPU
 
-## Pipeline 1
+## Pipeline
 Dans un premier temps, il vous faudra:
 
 1. Entrainer un auto-encodeur pour la reconstruction d'action sur SHREC 14 et 28 (code avec un MLP trivial sans aucune optimisation donnée)
@@ -25,10 +25,9 @@ Il y'a plein d'idées à creuser vis-à-vis de l'approche:
 * Optimiser l'architecture de l'auto-encodeur (gridsearch + au lieu de faire un MLP, faire du CNN, du LSTM ou de l'attention), optimiser les hyperparamètres(dropout, batch, learning rate, fonctions d'activations, early_stopping, ReduceLronPlateau) et réaliser une première évaluation. 
 * Jouer sur la taille de l'espace latent (itd=13) dans le code, et faire des visualisations via T-Sne dans le code puis faire une étude de l'importance de la taille de l'espace latent dans: la reconstruction de l'AE et la qualité de classification de l'approche complète.
 
-## Ce que l'on souhaiterait
-
-
-
+## Si vous avez des problèmes bloquants
+M'envoyer un mail à joseph.gesnouin@vedecom.fr ou joseph.gesnouin@mines-paristech.fr 
+Bon courage et amusez vous bien :)
 
 # Deep Learning for Hand Gesture Recognition
 

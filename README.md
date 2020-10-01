@@ -44,6 +44,11 @@ The notebook includes gesture data loading, model creation, and model training. 
 
 Additional details are provided below.
 
+Description	Google Colab
+1. Data Loading	https://colab.research.google.com/drive/1ggYG1XRpJ50gVgJqT_uoI257bspNogHj
+2. Model: Keras	https://colab.research.google.com/drive/1DA3qlnT-HlN5aTvWbWT-ARDfaQIEZGfH
+2. Model: PyTorch	https://colab.research.google.com/drive/1TcfF3sNBOAXkQC5XU7tHMBfm0FYIC0UR
+
 ---
 
 ## Model overview

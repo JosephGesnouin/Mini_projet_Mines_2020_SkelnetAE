@@ -28,7 +28,7 @@ Dans un premier temps, il vous faudra:
 ## Idées à creuser
 Il y'a plein d'idées à creuser vis-à-vis de l'approche:
 * Dans un premier temps vous pouvez, au lieu de traiter le problème comme un problème à deux étapes, concatener le réseaux Skelnet à la partie encodeur de l'AE et finetuner l'approche, ce qui donnera une architecture optimisée de bout en bout.
-* Optimiser l'architecture de l'auto-encodeur (gridsearch + au lieu de faire un MLP, faire du CNN, du LSTM ou de l'attention), optimiser les hyperparamètres(dropout, batch, learning rate, fonctions d'activations, early_stopping, ReduceLronPlateau) et réaliser une première évaluation. 
+* Optimiser l'architecture de l'auto-encodeur (gridsearch + au lieu de faire un MLP, faire du CNN, du LSTM ou de l'attention), optimiser les hyperparamètres(dropout, batch, optimizer:(adadelta, Adam, RMSProp), learning rate, fonctions d'activations, early_stopping, ReduceLronPlateau) et réaliser une première évaluation. 
 * Jouer sur la taille de l'espace latent (itd=13) dans le code, et faire des visualisations via T-Sne dans le code puis faire une étude de l'importance de la taille de l'espace latent dans: la reconstruction de l'AE et la qualité de classification de l'approche complète.
 
 ## Si vous avez des problèmes bloquants

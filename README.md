@@ -15,7 +15,7 @@ Vous allez surement rencontrer quelques problèmes et en une semaine, certains p
 ## Pipeline
 Dans un premier temps, il vous faudra:
 
-1. Entrainer un auto-encodeur pour la reconstruction d'action sur SHREC 14 et 28 ([code avec un MLP trivial sans aucune optimisation donnée]( https://drive.google.com/drive/folders/18tsv-Aje8jUNLzLB4ZufjOtGEzpeI-jl?usp=sharing))
+1. Entrainer un auto-encodeur pour la reconstruction d'action sur SHREC 14 et 28 ([code avec un MLP trivial sans aucune optimisation donnée]( https://drive.google.com/drive/folders/18tsv-Aje8jUNLzLB4ZufjOtGEzpeI-jl?usp=sharing), les données sur sont le drive, je vous recommande de télécharger le dossier directement)
 2. Extraire la représentation des actions dans l'espace latent pour: l'ensemble de train et l'ensemble de test (code avec un MLP trivial sans aucune optimisation donnée)
 3. Entrainer Skelnet sur les données extraites en 2 et évaluer les résultats.
 

@@ -19,6 +19,7 @@ Dans notre cas, nous travaillons sur un [auto encodeur modifié](https://github.
   <img width="460" alt="Hand Pose" src="https://github.com/JosephGesnouin/Mini_projet_Mines_2020_SkelnetAE/blob/master/images/AEsup.png">
 </p>
 
+Si vous souhaitez en savoir plus: Une explication de la démarche de l'[AE modifié](https://github.com/JosephGesnouin/Mini_projet_Mines_2020_SkelnetAE/blob/master/images/Compte_rendu_premiere_annee_JG(2).pdf)
 ## Problèmes possibles
 
 Vous allez surement rencontrer quelques problèmes et en une semaine, certains peuvent être des points bloquants:

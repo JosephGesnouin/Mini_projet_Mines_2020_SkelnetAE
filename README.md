@@ -1,8 +1,8 @@
 # TP Mines 2020:
 L'idée est de mettre en commun l'algorithme Skelnet proposé par [G. Devineau, F. Moutarde, W. Xi and J. Yang](https://ieeexplore.ieee.org/document/8373818) et la partie encodeur d'un autoencodeur pour voir si l'application de Skelnet sur une représentation plus réduite et porteuse d'information permet d'améliorer les résultats de skelnet pour shrec 14 et 28 classes.
 
-Dans ce repository, vous trouverez l'approche complete de Guillaume qui est forkée et une implémentation triviale d'auto-encodeur en Keras (sans aucune optimisation quelconque)
-Je vous recommande, de travailler en Keras (le code de Guillaume étant disponible en Keras et en Pytorch), mais si Pytorch vous convient et que vous souhaitez faire le TP en Pytorch, aucun soucis.
+Dans ce repository, vous trouverez l'approche complete de Guillaume qui est forkée et une implémentation triviale d'auto-encodeur avec régularisation statistique en Keras (sans aucune optimisation quelconque)
+Je vous recommande, de travailler en Keras (le code de Guillaume étant disponible en Keras et en Pytorch), mais si Pytorch vous convient et que vous souhaitez faire le TP en Pytorch et recoder l'autoencodeur modifié, aucun soucis.
 
 Dans un premier temps je vous conseille de vous familiariser avec le concept d'auto-encodeur avec [une vidéo explicative](https://www.youtube.com/watch?v=g-KVHf0A2kI). 
 Dans un second temps je vous conseille de vous intéresser à l'algorithme Skelnet présenté par Guillaume et al donc l'explication se trouve en dessous et le papier peut se trouver soit en demandant à Fabien soit sur internet.
@@ -20,16 +20,18 @@ Dans notre cas, nous travaillons sur un [auto encodeur modifié](https://github.
 </p>
 
 Si vous souhaitez en savoir plus: Une explication de la démarche de l'[AE modifié](https://github.com/JosephGesnouin/Mini_projet_Mines_2020_SkelnetAE/blob/master/images/Compte_rendu_premiere_annee_JG(2).pdf)
+
+Le code peut-être optimisé et n'est pas complet mais vous avez l'idée générale de l'approche: la fonction de cout modifié, la projection des classes du bottleneck via LDA, la visualisation de l'espace latent et le finetuning de la partie encodeur.
 ## Problèmes possibles
 
 Vous allez surement rencontrer quelques problèmes et en une semaine, certains peuvent être des points bloquants:
-* Les données: De mémoire il faut faire une demande pour récupérer les données, le code de Guillaume n'est en réalité pas directement applicable, il faudra certainement regarder le format de son entrée vis-à-vis de ce que je vous donne comme données ([disponibles sur mon drive]( https://drive.google.com/drive/folders/18tsv-Aje8jUNLzLB4ZufjOtGEzpeI-jl?usp=sharing)
+* Les données: De mémoire il faut faire une demande pour récupérer les données, le code de Guillaume n'est en réalité peut-être pas directement applicable, il faudra certainement regarder le format de son entrée vis-à-vis de ce que je vous donne comme données ([disponibles sur mon drive]( https://drive.google.com/drive/folders/18tsv-Aje8jUNLzLB4ZufjOtGEzpeI-jl?usp=sharing)
 * La capacité de calcul: Travaillez sur Collab si vous n'avez pas de GPU
 
 ## Pipeline
 Dans un premier temps, il vous faudra:
 
-1. Entrainer un auto-encodeur pour la reconstruction d'action sur SHREC 14 et 28 ([code avec un MLP trivial sans aucune optimisation donnée]( https://drive.google.com/drive/folders/18tsv-Aje8jUNLzLB4ZufjOtGEzpeI-jl?usp=sharing), les données sur sont le drive, je vous recommande de télécharger le dossier directement)
+1. Entrainer un auto-encodeur pour la reconstruction d'action sur SHREC 14 et 28 ([code avec un notre AE modifié sur google drive sans aucune optimisation donnée]( https://drive.google.com/drive/folders/18tsv-Aje8jUNLzLB4ZufjOtGEzpeI-jl?usp=sharing), les données sur sont le drive, je vous recommande de télécharger le dossier directement)
 2. Extraire la représentation des actions dans l'espace latent pour: l'ensemble de train et l'ensemble de test (code avec un MLP trivial sans aucune optimisation donnée)
 3. Entrainer Skelnet sur les données extraites en 2 et évaluer les résultats.
 

@@ -1,48 +1,29 @@
 # TP Mines 2020:
 L'idée est de mettre en commun l'algorithme Skelnet proposé par [G. Devineau, F. Moutarde, W. Xi and J. Yang](https://ieeexplore.ieee.org/document/8373818) et la partie encodeur d'un autoencodeur pour voir si l'application de Skelnet sur une représentation plus réduite et porteuse d'information permet d'améliorer les résultats de skelnet pour shrec 14 et 28 classes.
 
-Dans ce repository, vous trouverez l'approche complete de Guillaume qui est forkée et une implémentation triviale d'auto-encodeur avec régularisation statistique en Keras (sans aucune optimisation quelconque)
-Je vous recommande, de travailler en Keras (le code de Guillaume étant disponible en Keras et en Pytorch), mais si Pytorch vous convient et que vous souhaitez faire le TP en Pytorch et recoder l'autoencodeur modifié, aucun soucis.
+Dans ce repository, vous trouverez l'approche complete de Guillaume qui est forkée
 
 Dans un premier temps je vous conseille de vous familiariser avec le concept d'auto-encodeur avec [une vidéo explicative](https://www.youtube.com/watch?v=g-KVHf0A2kI). 
 Dans un second temps je vous conseille de vous intéresser à l'algorithme Skelnet présenté par Guillaume et al donc l'explication se trouve en dessous et le papier peut se trouver soit en demandant à Fabien soit sur internet.
 
-Le principe dans notre cas est d'apprendre à reconstruire une action grâce à un auto-encodeur et récupérer la projection de chacune des actions dans l'espace réduit (ou espace latent ou bottleneck) puis d'appliquer Skelnet sur les données d'entrées transformées avec la partie encodeur.
+Le principe dans notre cas est d'apprendre à reconstruire une posture grâce à un auto-encodeur et récupérer la projection de chacune des postures dans l'espace réduit (ou espace latent ou bottleneck) puis d'appliquer Skelnet sur les postures transformées avec la partie encodeur concaténées sous la forme d'une time series.
 
-Dans un certain sens, on espère avec l'autoencodeur capturer une certaine sémantique dans le jeu de données qui augmentera la capacité de classification de Skelnet
-
-## Présentation de l'auto-encodeur modifié
-
-Dans notre cas, nous travaillons sur un [auto encodeur modifié](https://github.com/JosephGesnouin/Mini_projet_Mines_2020_SkelnetAE/blob/master/SHREC/SHREC/Supervised_AE_Shrec_TP_Mines_2020.ipynb) avec une régularisation statistique pour conditionner la projection des instances dans l'espace latent en fonction de leur classe grâce à une analyse discriminante linéaire.
-
-<p align="center">
-  <img width="460" alt="Hand Pose" src="https://github.com/JosephGesnouin/Mini_projet_Mines_2020_SkelnetAE/blob/master/images/AEsup.png">
-</p>
-
-Si vous souhaitez en savoir plus: Une explication de la démarche de l'[AE modifié](https://github.com/JosephGesnouin/Mini_projet_Mines_2020_SkelnetAE/blob/master/images/Compte_rendu_premiere_annee_JG(2).pdf)
-
-Le code peut-être optimisé et n'est pas complet mais vous avez l'idée générale de l'approche: la fonction de cout modifié, la projection des classes du bottleneck via LDA, la visualisation de l'espace latent et le finetuning de la partie encodeur.
-
-Je vous conseille de sauvegarder les poids via "bottleneck_model.save('AELDA.h5')" lorsque la fonction de cout est au plus bas et de load (load_model()) ce modèle pour la suite de l'approche (ce n'est pas dans le code mais nécéssite 1 ligne, je n'ai pas pris de le temps de le faire sur le drive et par conséquent elle est manquante)
-## Problèmes possibles
-
-Vous allez surement rencontrer quelques problèmes et en une semaine, certains peuvent être des points bloquants:
-* Les données: De mémoire il faut faire une demande pour récupérer les données, le code de Guillaume n'est en réalité peut-être pas directement applicable, il faudra certainement regarder le format de son entrée vis-à-vis de ce que je vous donne comme données ([disponibles sur mon drive]( https://drive.google.com/drive/folders/18tsv-Aje8jUNLzLB4ZufjOtGEzpeI-jl?usp=sharing)
-* La capacité de calcul: Travaillez sur Collab si vous n'avez pas de GPU
+Dans un certain sens, on espère avec l'autoencodeur capturer une certaine sémantique spatiale dans le jeu de données qui augmentera la capacité de classification de Skelnet qui lui est fait pour le traitement de séquence
 
 ## Pipeline
 Dans un premier temps, il vous faudra:
 
-1. Entrainer un auto-encodeur pour la reconstruction d'action sur SHREC 14 et 28 ([code avec un notre AE modifié sur google drive sans aucune optimisation donnée]( https://drive.google.com/drive/folders/18tsv-Aje8jUNLzLB4ZufjOtGEzpeI-jl?usp=sharing), les données sur sont le drive, je vous recommande de télécharger le dossier directement)
-2. Extraire la représentation des actions dans l'espace latent pour: l'ensemble de train et l'ensemble de test (x_train2 =  bottleneck_model3.predict(x_train)...)
+1. Entrainer un auto-encodeur pour la reconstruction de pose sur SHREC 14 et 28
+2. Extraire la représentation des poses dans l'espace latent puis les concatener pour conserver l'action complete pour: l'ensemble de train et l'ensemble de test
 3. Entrainer Skelnet sur les données extraites en 2 et évaluer les résultats.
+
+La question à laquelle on souhaite répondre: Avec une représentation de taille réduite des poses à chaque pas de temps (obtenues par un AE) peut-on améliorer les capacité de Skelnet?
 
 ## Idées à creuser
 Il y'a plein d'idées à creuser vis-à-vis de l'approche:
-* Au lieu d'avoir un auto encodeur qui apprend des actions dans leur globalité, entrainer l'auto-encodeur sur chaque frame de la séquence, les concatener et l'envoyer à Skelnet
 * Vous pouvez, au lieu de traiter le problème comme un problème à deux étapes, concatener le réseaux Skelnet à la partie encodeur de l'AE et finetuner l'approche, ce qui donnera une architecture optimisée de bout en bout.
 * Optimiser l'architecture de l'auto-encodeur (gridsearch + au lieu de faire un MLP, faire du CNN, du LSTM ou de l'attention), optimiser les hyperparamètres(dropout, batch, optimizer:(adadelta, Adam, RMSProp), learning rate, fonctions d'activations, early_stopping, ReduceLronPlateau) et réaliser une première évaluation.
-* Jouer sur la taille de l'espace latent (itd=13) dans le code, et faire des visualisations via T-Sne dans le code puis faire une étude de l'importance de la taille de l'espace latent dans: la reconstruction de l'AE et la qualité de classification de l'approche complète.
+* Jouer sur la taille de l'espace latent et faire des visualisations via T-Sne dans le code puis faire une étude de l'importance de la taille de l'espace latent dans: la reconstruction de l'AE et la qualité de classification de l'approche complète.
 
 ## Si vous avez des problèmes bloquants
 M'envoyer un mail à joseph.gesnouin@vedecom.fr ou joseph.gesnouin@mines-paristech.fr 

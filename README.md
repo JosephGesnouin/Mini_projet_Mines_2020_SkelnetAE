@@ -11,6 +11,13 @@ Le principe dans notre cas est d'apprendre à reconstruire une action grâce à 
 
 Dans un certain sens, on espère avec l'autoencodeur capturer une certaine sémantique dans le jeu de données qui augmentera la capacité de classification de Skelnet
 
+## Présentation de l'auto-encodeur modifié
+
+Dans notre cas, nous travaillons sur un [auto encodeur modifié](https://github.com/JosephGesnouin/Mini_projet_Mines_2020_SkelnetAE/blob/master/SHREC/SHREC/Supervised_AE_Shrec_TP_Mines_2020.ipynb) avec une régularisation statistique pour conditionner la projection des instances dans l'espace latent en fonction de leur classe grâce à une analyse discriminante linéaire.
+
+<p align="center">
+  <img width="460" alt="Hand Pose" src="https://github.com/JosephGesnouin/Mini_projet_Mines_2020_SkelnetAE/blob/master/images/AEsup.png">
+</p>
 
 ## Problèmes possibles
 

@@ -22,6 +22,8 @@ Dans notre cas, nous travaillons sur un [auto encodeur modifié](https://github.
 Si vous souhaitez en savoir plus: Une explication de la démarche de l'[AE modifié](https://github.com/JosephGesnouin/Mini_projet_Mines_2020_SkelnetAE/blob/master/images/Compte_rendu_premiere_annee_JG(2).pdf)
 
 Le code peut-être optimisé et n'est pas complet mais vous avez l'idée générale de l'approche: la fonction de cout modifié, la projection des classes du bottleneck via LDA, la visualisation de l'espace latent et le finetuning de la partie encodeur.
+
+Je vous conseille de sauvegarder les poids via "bottleneck_model.save('AELDA.h5')" lorsque la fonction de cout est au plus bas et de load (load_model()) ce modèle pour la suite de l'approche (ce n'est pas dans le code mais nécéssite 1 ligne, je n'ai pas pris de le temps de le faire sur le drive et par conséquent elle est manquante)
 ## Problèmes possibles
 
 Vous allez surement rencontrer quelques problèmes et en une semaine, certains peuvent être des points bloquants:
